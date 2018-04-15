@@ -1,3 +1,5 @@
 require:
   - rubocop-rspec
   - sanelint
+Style/Documentation:
+  Enabled: false
