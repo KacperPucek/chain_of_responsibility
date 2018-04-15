@@ -1,3 +1,5 @@
+require "spec_helper"
+
 require "chain_of_responsibility/handler"
 
 describe ChainOfResponsibility::Handler do

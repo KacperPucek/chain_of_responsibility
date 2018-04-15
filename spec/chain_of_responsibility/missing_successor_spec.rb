@@ -1,3 +1,5 @@
+require "spec_helper"
+
 require "chain_of_responsibility/missing_successor"
 
 describe ChainOfResponsibility::MissingSuccessor do

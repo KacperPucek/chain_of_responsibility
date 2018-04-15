@@ -1,4 +1,3 @@
-require "chain_of_responsibility/version"
 require "chain_of_responsibility/handler"
 
 module ChainOfResponsibility
@@ -28,7 +27,7 @@ module ChainOfResponsibility
     if handlers.empty?
       handler.new
     else
-      handler.new(make_chain(handlers))
+      handler.new(build_chain(handlers))
     end
   end
 end
