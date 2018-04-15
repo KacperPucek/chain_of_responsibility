@@ -3,3 +3,13 @@ require:
   - sanelint
 Style/Documentation:
   Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+
+Rails/Delegate:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 4
