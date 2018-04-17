@@ -24,12 +24,12 @@ module ChainOfResponsibility
   private
 
   def build_chain(handlers)
-    handler, *handlers = handlers
+    handler, *remaining = handlers
 
-    if handlers.empty?
+    if remaining.empty?
       handler.new
     else
-      handler.new(build_chain(handlers))
+      handler.new(build_chain(remaining))
     end
   end
 end
