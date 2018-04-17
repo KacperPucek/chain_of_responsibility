@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "chain_of_responsibility/handler"
 
 module ChainOfResponsibility

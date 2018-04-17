@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "chain_of_responsibility/errors/method_not_implemented_error"
 require "chain_of_responsibility/missing_successor"
 
