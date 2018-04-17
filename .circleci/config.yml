@@ -11,8 +11,6 @@ jobs:
     steps:
       - checkout
 
-      - run: sudo gem install bundler
-
       # Install dependencies
       - run: bundle install --path vendor/bundle
 
