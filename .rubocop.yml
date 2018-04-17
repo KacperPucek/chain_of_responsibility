@@ -1,6 +1,7 @@
-require:
-  - rubocop-rspec
-  - sanelint
+inherit_gem:
+  sanelint:
+    - config/default.yml
+
 Style/Documentation:
   Enabled: false
 
