@@ -1,0 +1,20 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+version: 2
+jobs:
+  build:
+    working_directory: ~/chain_of_responsibility
+
+    steps:
+      - checkout
+
+      # Install dependencies
+      - run: bundle install --path vendor/bundle
+
+      # Run tests!
+      - run: bundle exec rspec --format progress --color
+
+      # Run linter!
+      - run: rubocop -R
