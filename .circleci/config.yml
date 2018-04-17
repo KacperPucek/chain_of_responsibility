@@ -20,4 +20,4 @@ jobs:
       - run: bundle exec rspec --format progress --color
 
       # Run linter!
-      - run: rubocop -R
+      - run: bundle exec rubocop
