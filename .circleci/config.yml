@@ -11,8 +11,19 @@ jobs:
     steps:
       - checkout
 
-      # Install dependencies
-      - run: bundle install --path vendor/bundle
+      - type: cache-restore
+        name: Restore bundle cache
+        key: chain_of_responsibility-bundle-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: Bundle install
+          command: "bundle install --path vendor/bundle"
+
+      - type: save-cache
+        name: Store bundle cache
+        key: chain_of_responsibility-bundle-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
 
       # Run tests!
       - run: bundle exec rspec --format progress --color
