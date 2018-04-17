@@ -7,6 +7,9 @@ jobs:
   build:
     working_directory: ~/chain_of_responsibility
 
+    docker:
+      - image: circleci/ruby:2.3-browsers
+
     steps:
       - checkout
 
