@@ -1,8 +1,8 @@
-# ChainOfResponsibility
+# chain_of_responsibility
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/chain_of_responsibility`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+[![CircleCI](https://circleci.com/gh/KacperPucek/chain_of_responsibility.svg?style=shield)](https://circleci.com/gh/KacperPucek/chain_of_responsibility)
+[![Maintainability](https://api.codeclimate.com/v1/badges/b9b001acc0dfd25d0c19/maintainability)](https://codeclimate.com/github/KacperPucek/chain_of_responsibility/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/b9b001acc0dfd25d0c19/test_coverage)](https://codeclimate.com/github/KacperPucek/chain_of_responsibility/test_coverage)
 
 ## Installation
 
