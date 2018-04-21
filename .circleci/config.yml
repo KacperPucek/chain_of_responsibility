@@ -11,11 +11,20 @@ jobs:
     steps:
       - checkout
 
-      # Install dependencies
-      - run: bundle install --path vendor/bundle
+      - run:
+        name: Setup Code Climate test-reporter
+        command: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
 
-      # Run tests!
-      - run: bundle exec rspec --format progress --color
+      - run:
+        name: Install dependencies
+        command: bundle install --path vendor/bundle
 
-      # Run linter!
-      - run: bundle exec rubocop
+      - run:
+        name: Run tests
+        command: bundle exec rspec --format progress --color
+
+      - run:
+        name: Run linter
+        command: bundle exec rubocop
