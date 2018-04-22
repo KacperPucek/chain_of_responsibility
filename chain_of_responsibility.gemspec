@@ -12,9 +12,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["KacperPucek"]
   spec.email         = ["kacper.pucek@gmail.com"]
 
-  spec.summary       = ""
-  spec.description   = ""
-  spec.homepage      = ""
+  spec.summary       = "Ruby implementation of Chain of Responsibility pattern."
+  spec.description   = spec.summary
+  spec.homepage      = "https://github.com/KacperPucek/chain_of_responsibility"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`
