@@ -26,11 +26,10 @@ Some time ago I've stumbled upon pretty nice [article](http://rubyblog.pro/2017/
 responsibility pattern which I highly encourage you to read.
 
 The main idea is that we can change nasty `if/else` statements to a chain of
-options that can decide whether they are applicable or not. Options
-are specified in the certain order and when we get a match we stop
-execution and immediately resolve.
+handlers that can decide whether they are applicable or not. Handlers
+are specified in the certain order and when we get a match we resolve using an appropriate handler.
 
-This `gem` provides tiny wrapper to make defining `chains` nicer. It's pretty minimal so feel free to simply copy source code and adjust it to your needs if you wish.
+This `gem` provides a tiny wrapper to make defining `chains` nicer. It's pretty minimal so feel free to simply copy the source code and adjust it to your needs if you wish.
 
 ## Usage
 
