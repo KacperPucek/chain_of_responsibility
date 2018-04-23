@@ -20,9 +20,100 @@ Or install it yourself as:
 
     $ gem install chain_of_responsibility
 
+## About
+
+Some time ago I've stumbled upon pretty nice [article](http://rubyblog.pro/2017/11/chain-of-responsibility-ruby) written by *Sergii Makagon* about a chain of
+responsibility pattern which I highly encourage you to read.
+
+The main idea is that we can change nasty `if/else` statements to a chain of
+handlers that can decide whether they are applicable or not. Handlers
+are specified in the certain order and when we get a match we resolve using an appropriate handler.
+
+This `gem` provides a tiny wrapper to make defining `chains` nicer. It's pretty minimal so feel free to simply copy the source code and adjust it to your needs if you wish.
+
 ## Usage
 
-TODO: Write usage instructions here
+A chain is composed of handlers defined in a specific order which are called one by one until
+there's a handler that can handle the request. If none of the handlers can be used, error will
+be raised.
+
+### Handlers
+
+Handlers should inherit from `ChainOfResponsibility::Handler` and define `applicable?` and `resolve` methods that can take an arbitrary number of arguments (but both the same).
+
+Example:
+
+```ruby
+module Handlers
+  class WelcomeEmailHandler < ChainOfResponsibility::Handler
+    def applicable?(user)
+      user.registered? && user.confirmed?
+    end
+
+    def resolve(user)
+      # send email
+    end
+  end
+end
+```
+
+### Chain
+
+Once you have your specific handlers defined, you can easily compose them.
+
+Example
+
+```ruby
+module Handlers
+  class Passing < ChainOfResponsibility::Handler
+    def applicable?
+      true
+    end
+
+    def resolve
+      :ok
+    end
+  end
+end
+
+module Handlers
+  class Failing < ChainOfResponsibility::Handler
+    def applicable?
+      false
+    end
+
+    def resolve
+      # won't be reached
+    end
+  end
+end
+
+class PassingTransaction
+  include ChainOfResponsibility
+
+  def_handler Handlers::Failing
+  def_handler Handlers::Passing
+
+  def call
+    chain.call
+  end
+end
+
+PassingTransaction.new.call # => :ok
+
+class FailingTransation
+  include ChainOfResponsibility
+
+  def_handler Handlers::Failing
+
+  def call
+    chain.call
+  end
+end
+
+FailingTransation.new.call # => ChainOfResponsibility::NoAppropriateHandlerFoundError
+```
+
 
 ## Development
 
@@ -32,7 +123,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/chain_of_responsibility. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/KacperPucek/chain_of_responsibility. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
