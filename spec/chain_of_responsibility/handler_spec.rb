@@ -28,33 +28,29 @@ describe ChainOfResponsibility::Handler do
   end
 
   describe "#call" do
-    let(:passing_handler_klass) do
-      Class.new(described_class) do
-        def resolve
-          :ok
-        end
+    class FakePassingHandler < described_class
+      def resolve
+        :ok
+      end
 
-        def applicable?
-          true
-        end
+      def applicable?
+        true
       end
     end
 
-    let(:failing_handler_klass) do
-      Class.new(described_class) do
-        def resolve
-          :error
-        end
+    class FakeFailingHandler < described_class
+      def resolve
+        :error
+      end
 
-        def applicable?
-          false
-        end
+      def applicable?
+        false
       end
     end
 
     context "when handler is applicable" do
       it "calls resolve" do
-        handler = passing_handler_klass.new
+        handler = FakePassingHandler.new
 
         expect(handler.call).to eq :ok
       end
@@ -63,7 +59,7 @@ describe ChainOfResponsibility::Handler do
     context "when handler is not applicable" do
       context "when another handler is defined" do
         it "calls him" do
-          handler = failing_handler_klass.new(passing_handler_klass.new)
+          handler = FakeFailingHandler.new(FakePassingHandler.new)
 
           expect(handler.call).to eq :ok
         end
@@ -71,7 +67,7 @@ describe ChainOfResponsibility::Handler do
 
       context "when there are not other handlers" do
         it "raises NoAppropriateHandlerFoundError error" do
-          handler = failing_handler_klass.new
+          handler = FakeFailingHandler.new
 
           expect { handler.call }
             .to raise_error(ChainOfResponsibility::NoAppropriateHandlerFoundError)
